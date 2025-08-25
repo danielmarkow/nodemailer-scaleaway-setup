@@ -1,0 +1,19 @@
+{
+  "name": "nodemailer-scaleaway-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "buildandrun": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "nodemailer": "^7.0.5"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^7.0.1",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
