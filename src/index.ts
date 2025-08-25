@@ -14,16 +14,15 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export const sendEmail = async (to: string, subject: string, htmlContent: string, textContent?: string) => {
-    try {
-        const mailOptions = {
-            from: process.env.SENDER_EMAIL,
-            to: to,
-            subject: subject,
-            html: htmlContent,
-            text: textContent,
-        };
+type EmailOptions = {
+    from: string;
+    to: string;
+    subject: string;
+    htmlContent: string;
+};
 
+export const sendEmail = async (mailOptions: EmailOptions) => {
+    try {
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent: %s', info.messageId);
         return {success: true, message: 'Email sent successfully!'};
@@ -34,7 +33,13 @@ export const sendEmail = async (to: string, subject: string, htmlContent: string
 };
 
 (async () => {
-    const resp = await sendEmail("daniel.markow@gmail.com", "hello world", "<p>this is a test</p>", "text content")
+    const emailOptions: EmailOptions = {
+        from: process.env.SENDER_EMAIL!,
+        to: "target@email.com",
+        subject: "hello world",
+        htmlContent: "<p>this is a test</p>"
+    }
+    const resp = await sendEmail(emailOptions)
     console.log(resp)
 })();
 
