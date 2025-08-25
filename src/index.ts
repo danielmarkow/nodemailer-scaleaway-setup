@@ -18,7 +18,7 @@ type EmailOptions = {
     from: string;
     to: string;
     subject: string;
-    htmlContent: string;
+    html: string;
 };
 
 export const sendEmail = async (mailOptions: EmailOptions) => {
@@ -37,7 +37,7 @@ export const sendEmail = async (mailOptions: EmailOptions) => {
         from: process.env.SENDER_EMAIL!,
         to: "target@email.com",
         subject: "hello world",
-        htmlContent: "<p>this is a test</p>"
+        html: "<p>this is a test</p>",
     }
     const resp = await sendEmail(emailOptions)
     console.log(resp)
